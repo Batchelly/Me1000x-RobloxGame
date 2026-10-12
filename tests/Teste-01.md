@@ -1,6 +1,6 @@
 # Teste 01
 
-**Commit testado:** 541f71bcae97519a61d530260bdd76a450c62fd2
+**Commit testado:** (a preencher)
 **Objetivo:** Verificar que a migração dos testes para o TestEZ (Wally) sincroniza pelo Rojo e que o `TestRunner` roda os 57 specs ao dar Play no Studio, sem atrapalhar o jogo.
 **Pré-requisitos:**
 - Studio aberto com o place do projeto
@@ -10,7 +10,7 @@
 
 ## Passo 0: Verificação inicial
 - Confirme que o plugin Rojo mostra conexão ativa.
-- Confirme que o commit do repositório é o mesmo informado acima.
+- Confirme que o commit do repositório (HEAD) é o informado acima **ou** o commit imediatamente seguinte a ele com a mensagem `test: fixa hash em Teste-01`. Esse commit seguinte só grava o hash neste arquivo e não altera o código. Qualquer outro HEAD conta como falha.
 - Se algum item falhar, pare e relate. Não execute os passos seguintes.
 
 ## Passo 1: Estrutura sincronizada no Explorer
