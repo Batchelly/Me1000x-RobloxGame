@@ -82,11 +82,13 @@ O projeto vive 100% em código (Luau + [Rojo](https://rojo.space)). O mapa, os m
 
 ## 1. Instalar as ferramentas
 
-O projeto usa o **Rokit**. O `rokit.toml` já lista `rojo` 7.7.1, `selene`, `stylua` e `lune`.
+O projeto usa o **Rokit**. O `rokit.toml` já lista `rojo` 7.7.1, `selene`, `stylua`, `lune` e `wally`.
 
 ```powershell
 # 1x por máquina: instale o Rokit (https://github.com/rojo-rbx/rokit#installation)
 rokit install
+# baixa o TestEZ (wally.toml) para DevPackages/ — necessário para o rojo serve/build
+wally install
 ```
 
 > Prefere o **Aftman**? Crie um `aftman.toml` com as mesmas linhas do `[tools]` do `rokit.toml` e rode `aftman install`.
@@ -141,10 +143,35 @@ Para testar roubo e alertas: **Test > Clients and Servers > 2 Players** (a prote
 
 ## 4. Testes, lint e formatação
 
+Os testes usam o **TestEZ** (`roblox/testez`, instalado pelo Wally). Cada arquivo `tests/*.spec.luau` retorna uma função com `describe` / `it` / `expect`:
+
+```lua
+local load = require(if script then script.Parent.lib.load else "./lib/load")
+local EconomyMath = load("EconomyMath") -- módulo de src/shared
+local Base64 = load("Base64")
+
+return function()
+	describe("Exemplo", function()
+		it("matchers mais usados", function()
+			expect(EconomyMath.award(1, 1, 1)).to.equal(1)
+			expect(EconomyMath.multiplier(3, 0.5, false, 2)).to.be.near(2.5, 1e-9) -- near(x, limite)
+			expect(Base64.decode("abc")).never.to.be.ok() -- ok() = não-nil
+			expect(function() error("boom") end).to.throw("boom")
+		end)
+	end)
+end
+```
+
+Os mesmos specs rodam em dois lugares:
+
+- **No Studio**: ao dar **Play**, `ServerScriptService.Tests.TestRunner` roda tudo com o TestEZ e escreve `Test results: N passed, M failed` no Output (só lista o que falhou). Não roda em servidor publicado. Para desligar, marque o atributo `Disabled = true` no Script `TestRunner`.
+- **No terminal** (sem Studio, bom para CI): `lune run test` usa um runner compatível com a API do TestEZ (`.lune/lib/testez.luau`).
+
 ```powershell
-lune run tests/run       # 52 testes de lógica pura
-selene src tests         # lint
-stylua --check src tests
+lune run test            # 57 testes de lógica pura
+lune run test Path       # só os specs cujo nome contém "Path"
+selene src tests .lune   # lint
+stylua --check src tests .lune
 ```
 
 Cobrem: compressão e interpolação de caminho, transformação das fitas da Pista entre plots, layout dos plots (inclusive "não invade a rua"), vagas da estante, ciclo dia/noite, economia, níveis da base, Base64, spatial hash e textos PT/EN.
@@ -227,12 +254,14 @@ src/client/            -> StarterPlayerScripts.Client
   Controllers/  State, Sound, Notify, Hud, Shop, BaseMenu, Panels, Settings, Record,
                 CloneRenderer, WorldFx, Base, Environment, CharacterAnimator
   Ui/           Theme, Builder, Root, I18n, Hooks, Components/*
-tests/                 testes Lune
+tests/                 -> ServerScriptService.Tests (specs TestEZ + TestRunner do Studio)
+.lune/test.luau        lune run test (mesmos specs, fora do Studio)
+DevPackages/           -> ReplicatedStorage.DevPackages (TestEZ, gerado pelo wally install)
 ```
 
 ## Pendências / limitações (leia antes de publicar)
 
-- **Nada da v2 foi rodado no Studio.** Aqui não há Studio. O que foi verificado: selene e stylua sem avisos, **52 testes** de lógica no Lune e `rojo build` gerando o place. Falta testar no Studio:
+- **Nada da v2 foi rodado no Studio.** Aqui não há Studio. O que foi verificado: selene e stylua sem avisos, **57 testes** de lógica (TestEZ, via Lune) e `rojo build` gerando o place. Falta testar no Studio:
   - jogabilidade: pulo, trampolins, plataforma móvel e o parkour de cada bairro;
   - roubo de fitas com 2 ou mais jogadores (pegar, carregar, entregar, tapa, laser de defesa);
   - layout da UI em celulares de verdade;

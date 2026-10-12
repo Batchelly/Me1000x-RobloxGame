@@ -1,4 +1,4 @@
-std = "roblox"
+std = "roblox+testez"
 
 [rules]
 # Módulos de serviço usam tabelas globais de dependência injetadas no init().

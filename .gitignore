@@ -5,3 +5,7 @@
 *.rbxlx.lock
 /build/
 roblox.yml
+
+# Pacotes do Wally (recrie com: wally install)
+/Packages/
+/DevPackages/
