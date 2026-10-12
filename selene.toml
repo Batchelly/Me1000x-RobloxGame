@@ -1,0 +1,5 @@
+std = "roblox"
+
+[rules]
+# Módulos de serviço usam tabelas globais de dependência injetadas no init().
+shadowing = "allow"

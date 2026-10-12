@@ -1,0 +1,53 @@
+{
+	"name": "me-x1000",
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"Shared": {
+				"$path": "src/shared"
+			}
+		},
+		"ServerScriptService": {
+			"Server": {
+				"$path": "src/server"
+			}
+		},
+		"StarterPlayer": {
+			"$properties": {
+				"CharacterUseJumpPower": true,
+				"CharacterJumpPower": 50,
+				"CharacterWalkSpeed": 16,
+				"EnableMouseLockOption": false
+			},
+			"StarterPlayerScripts": {
+				"Client": {
+					"$path": "src/client"
+				}
+			}
+		},
+		"Players": {
+			"$properties": {
+				"CharacterAutoLoads": false,
+				"RespawnTime": 3
+			}
+		},
+		"Workspace": {
+			"$properties": {
+				"StreamingEnabled": true,
+				"StreamingMinRadius": 128,
+				"StreamingTargetRadius": 512,
+				"Gravity": 196.2
+			}
+		},
+		"Lighting": {
+			"$properties": {
+				"Technology": "Future",
+				"ClockTime": 14,
+				"GlobalShadows": true,
+				"Brightness": 2.2,
+				"EnvironmentDiffuseScale": 0.5,
+				"EnvironmentSpecularScale": 0.3
+			}
+		}
+	}
+}

@@ -1,0 +1,7 @@
+# Arquivos gerados pelo Studio / rojo build
+*.rbxl
+*.rbxlx
+*.rbxl.lock
+*.rbxlx.lock
+/build/
+roblox.yml
