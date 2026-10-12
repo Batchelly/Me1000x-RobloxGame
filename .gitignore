@@ -9,3 +9,6 @@ roblox.yml
 # Pacotes do Wally (recrie com: wally install)
 /Packages/
 /DevPackages/
+
+# Prints dos testes do app (binários grandes, recriados a cada rodada)
+/tests/prints/

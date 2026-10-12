@@ -436,16 +436,17 @@ Config.Ambient = {
 }
 -- Efeitos: sons que já vêm com o cliente do Roblox (rbxasset://sounds/...). Funcionam sem
 -- upload, mas são simples: troque por IDs da Creator Store para mais qualidade.
+-- Não use rbxasset://sounds/swoosh.wav: o Studio recusa ("Asset is not approved for the requester").
 Config.Sfx = {
 	Click = "rbxasset://sounds/clickfast.wav",
 	Coin = "rbxasset://sounds/electronicpingshort.wav",
 	Build = "rbxasset://sounds/snap.wav",
 	Siren = "rbxasset://sounds/electronicpingshort.wav",
-	Laser = "rbxasset://sounds/swoosh.wav",
+	Laser = "rbxasset://sounds/electronicpingshort.wav",
 	Slap = "rbxasset://sounds/snap.wav",
-	Rebirth = "rbxasset://sounds/swoosh.wav",
+	Rebirth = "rbxasset://sounds/electronicpingshort.wav",
 	Error = "rbxasset://sounds/button.wav",
-	Open = "rbxasset://sounds/swoosh.wav",
+	Open = "rbxasset://sounds/clickfast.wav",
 }
 
 -- =========================================================================

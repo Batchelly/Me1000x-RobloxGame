@@ -1,0 +1,4 @@
+# Normaliza quebras de linha: o diff ignora CRLF x LF entre cópias do repositório (Windows x app de teste)
+* text=auto
+*.png binary
+*.rbxl binary
