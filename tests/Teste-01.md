@@ -1,6 +1,6 @@
 # Teste 01
 
-**Commit testado:** (a preencher)
+**Commit testado:** da226a598d99462120ae92c118d1d5034bbd8059
 **Objetivo:** Verificar que a migração dos testes para o TestEZ (Wally) sincroniza pelo Rojo e que o `TestRunner` roda os 57 specs ao dar Play no Studio, sem atrapalhar o jogo.
 **Pré-requisitos:**
 - Studio aberto com o place do projeto
